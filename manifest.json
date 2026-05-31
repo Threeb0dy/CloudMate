@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Coursedeck",
+  "version": "0.1.2",
+  "description": "Detects course videos on the SUFE Air Classroom platform, processes slides and transcripts, and provides an AI-powered sidebar assistant for course Q&A.",
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "sidePanel",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>",
+    "http://localhost:8000/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "打开 Coursedeck",
+    "default_icon": "icons/sidebar.svg"
+  },
+  "side_panel": {
+    "default_path": "dist/sidebar.html"
+  },
+  "commands": {
+    "open_sidebar": {
+      "suggested_key": {
+        "default": "Alt+Shift+K"
+      },
+      "description": "打开 Coursedeck 侧边栏"
+    }
+  }
+}
